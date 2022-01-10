@@ -20,7 +20,7 @@
     <template id='inh_acc_inv_rep1' inherit_id='account.report_invoice_document'>
       <xpath expr="/t/t/div/div[2]" position="after">
         <div class="row">
-          <div class="col">
+          <div class="col"><br/>
                     TAX: <span t-esc="o.word_tax.title()"/> LBP
           </div>
         </div>
