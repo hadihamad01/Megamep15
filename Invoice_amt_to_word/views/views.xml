@@ -6,7 +6,7 @@
       <field name='model'>account.move</field>
       <field name='inherit_id' ref='account.view_move_form'/>
       <field name='arch' type='xml'>
-        <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position='after'>
+        <xpath expr="//field[@name='amount_total']" position='after'>
           <field name='word_subtotal'/>
           <field name='word_tax'/>
           
@@ -16,22 +16,19 @@
     </record>
     
     <template id='inh_acc_inv_rep1' inherit_id='account.report_invoice_document'>
-      <xpath expr='//table/thead/tr/th[6]' position='after'>
-        <th>
-          <span>Amount in words</span>
-        </th>
-        <th>
-          <span>Vat in LBP</span>
-        </th>
+      <xpath expr="/t/t/div/div[2]" position="after">
+        <div class="row">
+          <div class="col">
+                    TAX: <span t-esc="o.word_tax.title()"/> LBP
+          </div>
+        </div>
       </xpath>
-
-      <xpath expr='//table/tbody/t/tr/t/td[6]' position='after'>
-        <td>
-          <span t-esc='line.word_subtotal'/>
-        </td>
-        <td>
-          <span t-esc='line.word_tax'/>
-        </td>
+      <xpath expr="/t/t/div/div[3]" position="after">
+        <div class="row">
+          <div class="col"><br/>
+            Total: <span t-esc="o.word_subtotal.title()"/> <span t-field='o.currency_id.name'/>
+          </div>
+        </div>
       </xpath>
     </template>
 
