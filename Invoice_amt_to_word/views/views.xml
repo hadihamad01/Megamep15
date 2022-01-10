@@ -32,9 +32,12 @@
           </div>
         </div>
       </xpath>
-      <xpath expr="//t[@t-foreach='o.amount_by_group']" position="replace">
+      <t t-call="account.document_tax_totals"
+      <xpath expr="//t[@t-call='account.document_tax_totals']" position="replace">
+      <tr class='border-black o_subtotal'>
         <td><span class='text-nowrap'><strong>Tax LBP</strong></span></td>
         <td class='text-right'><span class='text-nowrap' t-esc='o.tax_lbp'/> L.L</td>
+      </tr>
     </xpath>
     </template>
 
