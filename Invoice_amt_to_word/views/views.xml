@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+
+    <record id='acc_mv_template_form_inherit' model='ir.ui.view'>
+      <field name="name">acc_move_tp_inh1</field>
+      <field name='model'>account.move</field>
+      <field name='inherit_id' ref='account.view_move_form'/>
+      <field name='arch' type='xml'>
+        <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position='after'>
+          <field name='word_subtotal'/>
+          <field name='word_tax'/>
+          
+        </xpath>
+
+      </field>
+    </record>
+    
+    <template id='inh_acc_inv_rep1' inherit_id='account.report_invoice_document'>
+      <xpath expr='//table/thead/tr/th[6]' position='after'>
+        <th>
+          <span>Amount in words</span>
+        </th>
+        <th>
+          <span>Vat in LBP</span>
+        </th>
+      </xpath>
+
+      <xpath expr='//table/tbody/t/tr/t/td[6]' position='after'>
+        <td>
+          <span t-esc='line.word_subtotal'/>
+        </td>
+        <td>
+          <span t-esc='line.word_tax'/>
+        </td>
+      </xpath>
+    </template>
+
+
+  </data>
+</odoo>
