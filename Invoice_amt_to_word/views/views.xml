@@ -7,8 +7,10 @@
       <field name='inherit_id' ref='account.view_move_form'/>
       <field name='arch' type='xml'>
         <xpath expr="//field[@name='amount_total']" position='after'>
-          <field name='word_subtotal'/>
-          <field name='word_tax'/>
+          <field name='word_subtotal' invisible='1'/>
+          <field name='word_tax' invisible='1'/>
+          <field name='tax_lbp' invisible='1'/>
+          
           
         </xpath>
 
@@ -30,6 +32,10 @@
           </div>
         </div>
       </xpath>
+      <xpath expr="//t[@t-foreach='o.amount_by_group']" position="replace">
+        <td><span class='text-nowrap'><strong>Tax LBP</strong></span></td>
+        <td class='text-right'><span class='text-nowrap' t-esc='o.tax_lbp'/> L.L</td>
+    </xpath>
     </template>
 
 
